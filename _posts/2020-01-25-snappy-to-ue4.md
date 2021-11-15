@@ -1,6 +1,6 @@
 ---
 layout    : post
-title     : "Including Snappy as a plugin for Unreal Engine 4"
+title     : "Use Snappy compression/decompression library as a plugin for Unreal Engine 4"
 date      : 2020-01-25 11:15:05 +0200
 categories: 
   - Unreal Engine 4
