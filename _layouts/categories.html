@@ -1,0 +1,43 @@
+---
+layout: default
+permalink: /categories/
+title: Categories
+---
+
+
+<div id="archives">
+{% for category in site.categories %}
+<br>
+  <div class="archive-group">
+    {% capture category_name %}{{ category | first }}{% endcapture %}
+    <div id="#{{ category_name | slugize }}"></div>
+
+    <h1 class="category-head">{{ category_name }}</h1>
+    <hr/>
+    <a name="{{ category_name | slugize }}"></a>
+    <ul class="post-archives">
+    {% for post in site.categories[category_name] %}
+        {% capture post_lang %}{{ post.lang | default: site_lang }}{% endcapture %}
+        {% capture lang %}{% if post_lang != site_lang %}{{ post_lang }}{% endif %}{% endcapture %}
+
+        <li>
+          <span class="post-meta">
+              {{ post.date | date: "%b %-d, %Y" }}
+              {% if post.external-url %}
+              • <a href="{{ post.url | relative_url }}">Permalink</a>
+              {% endif %}
+          </span>
+
+          <h2>
+              {% if post.external-url %}
+              <a class="post-link" href="{{ post.external-url }}">{{ post.title | escape }} &rarr;</a>
+              {% else %}
+              <a class="post-link" href="{{ post.url | relative_url }}"{% if lang != empty %} lang="{{ lang }}"{% endif %}>{{ post.title | escape }}</a>
+              {% endif %}
+          </h2>
+        </li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
+</div>
